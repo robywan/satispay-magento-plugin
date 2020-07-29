@@ -15,7 +15,7 @@ class Satispay_Satispay_Adminhtml_KeysgeneratorController extends Mage_Adminhtml
         $logger = Mage::getModel('satispay/logger', array($helper->debugModeEnable()));
 
         $isSandbox = $helper->isSandbox();
-        if (empty($helper->getToken($isSandbox))) {
+        if (!$helper->getToken($isSandbox)) {
             return Mage::app()->getResponse()->setBody(__('Insert the six characters activation code.'));
         }
 
