@@ -1,5 +1,5 @@
 <?php
-require_once(dirname(__FILE__) . '/../includes/gbusiness-api-php-sdk/init.php');
+require_once(Mage::getBaseDir('code') . '/community/Satispay/Satispay/includes/gbusiness-api-php-sdk/init.php');
 
 class Satispay_Satispay_CallbackController extends Mage_Core_Controller_Front_Action
 {
