@@ -53,8 +53,8 @@ class Satispay_Satispay_Block_Adminhtml_System_Config_Form_Button extends Mage_A
             $buttonData['label'] = $this->helper('adminhtml')->__($isActivated ? 'Activate sandbox with new activation code' : 'Activate sandbox');
         }
 
-        $activationCodeNotSpecified = empty($helper->getToken($isSandbox));
-        if ($activationCodeNotSpecified) {
+        $activationCode = $helper->getToken($isSandbox);
+        if (empty($activationCode)) {
             $buttonData['disabled'] = 'disabled';
         } else {
             $buttonData['onclick'] = 'javascript:generate(); return false;';

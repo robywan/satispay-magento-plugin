@@ -26,7 +26,7 @@ class Satispay_Satispay_Helper_Data extends Mage_Core_Helper_Abstract
     public function isActivated($storeId = null)
     {
         $isSandbox = $this->isSandbox($storeId);
-        if (empty($this->getPrivateKey()) || empty($this->getPublicKey()) || empty($this->getKeyId($isSandbox))) {
+        if (!$this->getPrivateKey() || !$this->getPublicKey() || !$this->getKeyId($isSandbox)) {
             return false;
         }
 
