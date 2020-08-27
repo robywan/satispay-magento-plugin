@@ -60,9 +60,11 @@ class Satispay_Satispay_CallbackController extends Mage_Core_Controller_Front_Ac
             $logger->debug('Transaction saved for: ' . $serverPayment->id);
             $invoice = $payment->getCreatedInvoice();
             if ($invoice && !$order->getEmailSent()) {
-                $order->queueNewOrderEmail()
-                    ->setIsCustomerNotified(true)
-                    ->save();
+                if (method_exists($order, 'queueNewOrderEmail')) {
+                    $order->queueNewOrderEmail()->setIsCustomerNotified(true)->save();
+                } else {
+                    $order->sendNewOrderEmail()->setIsCustomerNotified(true)->save();
+                }
             }
             $logger->debug('Invoice: ' . $invoice->getIncrementId());
         }
